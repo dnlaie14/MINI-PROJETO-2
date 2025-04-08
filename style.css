@@ -1,7 +1,7 @@
 :root {
     --main-color: #ffffff;
     --bg: rgb(0, 0, 0);
-    --border: 0.1rem solid rgba(255,255,255,0.3);
+    --border: 0.1rem solid rgba(255, 255, 255, 0.3);
     font-size: 10px;
     transition: 0.3s linear;
 
@@ -10,51 +10,140 @@
 * {
     margin: 0;
     padding: 0;
-    outline: none; 
+    outline: none;
     border: none;
     text-decoration: none;
     text-transform: capitalize;
     transition: 0, 2 linear;
 }
-body{
+
+body {
     background-color: var(--bg);
 }
-/* section{
-      padding:3rem 2rem;
-      margin: 0 auto;
-      max-width: 1200px;
-       
-} */
-.header{
-    border-bottom: var(--border);
-    background-color:
+
+section {
+    padding: 3rem 2rem;
+    margin: 0 auto;
+    max-width: 900px;
+
 }
 
-.header section  {
+.header {
+    border-bottom: var(--border);
+    background-color: black;
+
+}
+
+.header section {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
+
+.logo img {
+    width: 130px;
+    height: auto;
+
+}
+
 .navaba a {
     margin: 0 1rem;
     font-size: 1.8rem;
-    color :#ffffff
+    color: #ffffff
+}
+
+.navaba a:hover {
+    color: darkgoldenrod;
+    border-bottom: 0.1rem solid darkgoldenrod;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.icons img {
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.icons img:hover {
+    width: 35px;
+    height: 35px;
 
 }
-.navaba a:hover{
+
+#form-contato {
+    display: flex;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+#btn-list {
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    color: #fffefe;
+    background-color: black;
+    cursor: pointer;
+}
+
+#container-alunos {
+    background-color: black;
     color: darkgoldenrod;
-    border-bottom: 0.1rem solid darkgoldenrod ;
-    padding-bottom:0.5rem ;
-    font-size: 2rem ;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+
 }
-.icons img{
-     margin: 1rem;
-     cursor: pointer;
+
+.listadealunos {
+    color: #fffefe;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 0;
+
 }
-.icons img:hover{
-width: 35px;
-height: 35px;
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid darkgoldenrod;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2196F3;
+    background-color: #e0f7fa;
+}
+
+#btn-save {
+    display: flex;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    background-color: darkgoldenrod;
+    outline: none;
+}
+
+.btn-mv {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+    position: relative;
+    left: -15px;
+}
+
+#alunosCadastrados {
+    list-style-type: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 
 }

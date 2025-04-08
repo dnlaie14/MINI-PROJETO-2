@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <section>
+            <a href="#" class="logo">
+                <img src="academia.png" alt="logo">
+            </a>
+            <nav class="navaba">
+                <button id="btn-list">Alunos</button>
+                <a href="cadastro.html">cadastro</a>
+            </nav>
+        </section>
+    </header>
+    <section>
+
+        <div id="containerCadastro">
+            <div class="input">
+                <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+                <input type="tel" id="telefoneContato" name="telefoneContato" placeholder="Telefone" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="text" id="cpf" name="cpf" placeholder="CPF" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+
+            </div>
+        </div>
+        <div class="btn-mv">
+            <button id="btn-save">Salvar</button>
+        </div>
+
+        <div id="container-alunos">
+            <p id="tituloLista">Lista de Alunos Cadastrados</p>
+
+        </div>
+
+        <div class="listadealunos">
+            <ul id="alunosCadastrados"></ul>
+        </div>
+
+
+    </section>
+    <script src="script.js"></script>
+
+</body>
+</body>
+
+</html>

@@ -1,67 +1,160 @@
-class Contato {
-    constructor(nome, email, telefone) {
-      this.nome = nome;
-      this.email = email;
-      this.telefone = telefone;
-    }
+const alunos = [];
+
+class Aluno {
+  constructor(nome, telefoneContato, email, cpf) {
+    this.nome = nome;
+    this.telefoneContato = telefoneContato;
+    this.email = email;
+    this.cpf = cpf;
   }
-  
-  let contatos = [];
-  
-  // Função para atualizar a lista de contatos no DOM
-  function atualizarLista() {
-    const listaContatos = document.getElementById('lista-contatos');
-    listaContatos.innerHTML = '';
-    
-    contatos.forEach((contato, index) => {
-      const li = document.createElement('li');
-      li.innerHTML = `${contato.nome} - ${contato.email} - ${contato.telefone}
-                      <button onclick="editarContato(${index})">Editar</button>
-                      <button onclick="excluirContato(${index})">Excluir</button>`;
-      listaContatos.appendChild(li);
+}
+
+const nomeInput = document.getElementById('nome');
+const telefoneContatoInput = document.getElementById('telefoneContato');
+const emailInput = document.getElementById('email');
+const cpfInput = document.getElementById('cpf');
+const btnSave = document.getElementById("btn-save");
+const btnList = document.getElementById("btn-list");
+const containerList = document.getElementById("container-alunos");
+const ulListAlunos = document.getElementById("alunosCadastrados");
+
+btnSave.addEventListener("click", () => {
+
+  if (nomeInput.value && telefoneContatoInput.value && emailInput.value && cpfInput.value) {
+    const aluno = new Aluno(
+      nomeInput.value,
+      telefoneContatoInput.value,
+      emailInput.value,
+      cpfInput.value
+    );
+
+    alunos.push(aluno);
+    alert("Cadastro Concluido. Clique (Alunos) para visualizar.");
+    limparFormulario();
+  } else {
+    alert("Por favor, preencha todos os campos.");
+  }
+});
+
+btnList.addEventListener("click", listCadastros);
+
+function listCadastros() {
+  ulListAlunos.innerHTML = '';
+  alunos.forEach((aluno, index) => {
+    createList(index, aluno);
+  });
+}
+
+
+function createList(index, aluno) {
+  const btnDelete = document.createElement("button");
+  const btnEdit = document.createElement("button");
+
+  const listItem = document.createElement("li");
+  listItem.classList.add("aluno-card");
+
+  const nomeAluno = document.createElement("h3");
+  nomeAluno.classList.add("aluno-nome");
+  nomeAluno.innerHTML = aluno.nome;
+
+  const divInformacoes = document.createElement("div");
+  divInformacoes.classList.add("aluno-info");
+
+  const telefoneContatoAluno = document.createElement("p");
+  telefoneContatoAluno.classList.add("telefone");
+  telefoneContatoAluno.innerHTML = `Telefone: ${aluno.telefoneContato}`;
+
+  const emailAluno = document.createElement("p");
+  emailAluno.classList.add("email");
+  emailAluno.innerHTML = `Email: ${aluno.email}`;
+
+  const cpfAluno = document.createElement("p");
+  cpfAluno.classList.add("cpf");
+  cpfAluno.innerHTML = `CPF: ${aluno.cpf}`;
+
+  btnEdit.innerHTML = 'Editar';
+  btnDelete.innerHTML = 'Deletar';
+
+  btnEdit.style.padding = "0.5rem 1rem";
+  btnEdit.style.margin = "0.5rem";
+  btnEdit.style.borderRadius = "5px";
+  btnEdit.style.cursor = "pointer";
+  btnEdit.style.fontSize = "1.4rem";
+  btnEdit.style.backgroundColor = "#4CAF50";
+  btnEdit.style.color = "white";
+  btnEdit.style.border = "none";
+  btnEdit.style.transition = "background-color 0.3s";
+
+  btnEdit.addEventListener("mouseover", () => {
+    btnEdit.style.backgroundColor = "#45a049";
+  });
+
+  btnEdit.addEventListener("mouseout", () => {
+    btnEdit.style.backgroundColor = "#4CAF50";
+  });
+
+  btnDelete.style.padding = "0.5rem 1rem";
+  btnDelete.style.margin = "0.5rem";
+  btnDelete.style.borderRadius = "5px";
+  btnDelete.style.cursor = "pointer";
+  btnDelete.style.fontSize = "1.4rem";
+  btnDelete.style.backgroundColor = "#f44336";
+  btnDelete.style.color = "white";
+  btnDelete.style.border = "none";
+  btnDelete.style.transition = "background-color 0.3s";
+  btnDelete.addEventListener("mouseover", () => {
+    btnDelete.style.backgroundColor = "#e53935";
+  });
+
+  btnDelete.addEventListener("mouseout", () => {
+    btnDelete.style.backgroundColor = "#f44336";
+  });
+
+  btnEdit.addEventListener("click", () => {
+
+    nomeInput.value = aluno.nome;
+    telefoneContatoInput.value = aluno.telefoneContato;
+    emailInput.value = aluno.email;
+    cpfInput.value = aluno.cpf;
+
+
+    btnSave.removeEventListener("click", saveAluno);
+    btnSave.addEventListener("click", () => {
+      alunos[index] = new Aluno(
+        nomeInput.value,
+        telefoneContatoInput.value,
+        emailInput.value,
+        cpfInput.value
+      );
+      alert("Aluno atualizado!");
+      listCadastros();
+      limparFormulario();
     });
-  }
-  
-  // Função para cadastrar um novo contato
-  function cadastrarContato(event) {
-    event.preventDefault();
-    
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const telefone = document.getElementById('telefone').value;
-    
-    const novoContato = new Contato(nome, email, telefone);
-    contatos.push(novoContato);
-    
-    document.getElementById('form-contato').reset();
-    atualizarLista();
-  }
-  
-  // Função para editar um contato
-  function editarContato(index) {
-    const contato = contatos[index];
-    document.getElementById('nome').value = contato.nome;
-    document.getElementById('email').value = contato.email;
-    document.getElementById('telefone').value = contato.telefone;
-    
-    // Alterar a lógica do botão para salvar as edições
-    document.getElementById('form-contato').onsubmit = function(event) {
-      event.preventDefault();
-      contato.nome = document.getElementById('nome').value;
-      contato.email = document.getElementById('email').value;
-      contato.telefone = document.getElementById('telefone').value;
-      atualizarLista();
-      document.getElementById('form-contato').reset();
-    };
-  }
-      // Função para excluir um contato
-      function excluirContato(index) {
-        contatos.splice(index, 1);
-        atualizarLista();
-      }
-  
-      // Adicionando o evento de submit no formulário
-      document.getElementById('form-contato').addEventListener('submit', cadastrarContato);
-  
-      // Atualizar a lista inicialmente
-      atualizarLista();
+  });
+
+  btnDelete.addEventListener("click", () => {
+    if (confirm("Tem certeza que deseja deletar este aluno?")) {
+      alunos.splice(index, 1);
+      listCadastros();
+    }
+  });
+
+  divInformacoes.appendChild(telefoneContatoAluno);
+  divInformacoes.appendChild(emailAluno);
+  divInformacoes.appendChild(cpfAluno);
+  divInformacoes.appendChild(btnEdit);
+  divInformacoes.appendChild(btnDelete);
+
+  listItem.appendChild(nomeAluno);
+  listItem.appendChild(divInformacoes);
+
+  ulListAlunos.appendChild(listItem);
+}
+
+
+function limparFormulario() {
+  nomeInput.value = "";
+  telefoneContatoInput.value = "";
+  emailInput.value = "";
+  cpfInput.value = "";
+}
