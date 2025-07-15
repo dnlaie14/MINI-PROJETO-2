@@ -4,7 +4,6 @@
     --border: 0.1rem solid rgba(255, 255, 255, 0.3);
     font-size: 10px;
     transition: 0.3s linear;
-
 }
 
 * {
@@ -14,7 +13,8 @@
     border: none;
     text-decoration: none;
     text-transform: capitalize;
-    transition: 0, 2 linear;
+    transition: 0.2s linear;
+    box-sizing: border-box;
 }
 
 body {
@@ -25,13 +25,12 @@ section {
     padding: 3rem 2rem;
     margin: 0 auto;
     max-width: 900px;
-
+    width: 100%;
 }
 
 .header {
     border-bottom: var(--border);
     background-color: black;
-
 }
 
 .header section {
@@ -40,18 +39,19 @@ section {
     justify-content: space-between;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .logo img {
-    width: 130px;
+    width: 100%;
+    max-width: 130px;
     height: auto;
-
 }
 
 .navaba a {
     margin: 0 1rem;
     font-size: 1.8rem;
-    color: #ffffff
+    color: #ffffff;
 }
 
 .navaba a:hover {
@@ -61,22 +61,33 @@ section {
     font-size: 2rem;
 }
 
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .icons img {
     margin: 1rem;
     cursor: pointer;
+    width: 30px;
+    height: 30px;
+    transition: 0.2s;
 }
 
 .icons img:hover {
     width: 35px;
     height: 35px;
-
 }
 
 #form-contato {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+    gap: 1rem;
 }
 
 #btn-list {
@@ -93,7 +104,6 @@ section {
     font-size: 1.8rem;
     display: flex;
     justify-content: center;
-
 }
 
 .listadealunos {
@@ -104,7 +114,6 @@ section {
     gap: 20px;
     margin-top: 20px;
     padding: 0;
-
 }
 
 input {
@@ -114,6 +123,8 @@ input {
     border-radius: 5px;
     background-color: #f0f0f0;
     outline: none;
+    width: 100%;
+    max-width: 400px;
 }
 
 input:focus {
@@ -129,6 +140,7 @@ input:focus {
     border-radius: 5px;
     background-color: darkgoldenrod;
     outline: none;
+    cursor: pointer;
 }
 
 .btn-mv {
@@ -145,5 +157,59 @@ input:focus {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
 
+/* RESPONSIVO: até 768px */
+@media (max-width: 768px) {
+    :root {
+        font-size: 9px;
+    }
+
+    .header section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .navaba {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .navaba a {
+        font-size: 1.6rem;
+        margin: 0;
+    }
+
+    .icons {
+        justify-content: flex-start;
+    }
+
+    #form-contato {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    #btn-list,
+    input,
+    #btn-save {
+        width: 100%;
+        font-size: 1.6rem;
+    }
+
+    .btn-mv {
+        justify-content: center;
+        left: 0;
+    }
+
+    .listadealunos {
+        font-size: 1.4rem;
+    }
+
+    section {
+        padding: 2rem 1rem;
+    }
 }

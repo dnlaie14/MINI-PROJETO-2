@@ -45,7 +45,6 @@ function listCadastros() {
   });
 }
 
-
 function createList(index, aluno) {
   const btnDelete = document.createElement("button");
   const btnEdit = document.createElement("button");
@@ -80,17 +79,17 @@ function createList(index, aluno) {
   btnEdit.style.borderRadius = "5px";
   btnEdit.style.cursor = "pointer";
   btnEdit.style.fontSize = "1.4rem";
-  btnEdit.style.backgroundColor = "#4CAF50";
+  btnEdit.style.backgroundColor = "#4CAF50"; 
   btnEdit.style.color = "white";
   btnEdit.style.border = "none";
   btnEdit.style.transition = "background-color 0.3s";
 
   btnEdit.addEventListener("mouseover", () => {
-    btnEdit.style.backgroundColor = "#45a049";
+    btnEdit.style.backgroundColor = "#45a049"; 
   });
 
   btnEdit.addEventListener("mouseout", () => {
-    btnEdit.style.backgroundColor = "#4CAF50";
+    btnEdit.style.backgroundColor = "#4CAF50"; 
   });
 
   btnDelete.style.padding = "0.5rem 1rem";
@@ -98,26 +97,26 @@ function createList(index, aluno) {
   btnDelete.style.borderRadius = "5px";
   btnDelete.style.cursor = "pointer";
   btnDelete.style.fontSize = "1.4rem";
-  btnDelete.style.backgroundColor = "#f44336";
+  btnDelete.style.backgroundColor = "#f44336"; 
   btnDelete.style.color = "white";
   btnDelete.style.border = "none";
-  btnDelete.style.transition = "background-color 0.3s";
+  btnDelete.style.transition = "background-color 0.3s"; 
   btnDelete.addEventListener("mouseover", () => {
-    btnDelete.style.backgroundColor = "#e53935";
+    btnDelete.style.backgroundColor = "#e53935"; 
   });
 
   btnDelete.addEventListener("mouseout", () => {
-    btnDelete.style.backgroundColor = "#f44336";
+    btnDelete.style.backgroundColor = "#f44336"; 
   });
 
   btnEdit.addEventListener("click", () => {
-
+    
     nomeInput.value = aluno.nome;
     telefoneContatoInput.value = aluno.telefoneContato;
     emailInput.value = aluno.email;
     cpfInput.value = aluno.cpf;
 
-
+    
     btnSave.removeEventListener("click", saveAluno);
     btnSave.addEventListener("click", () => {
       alunos[index] = new Aluno(
@@ -150,7 +149,6 @@ function createList(index, aluno) {
 
   ulListAlunos.appendChild(listItem);
 }
-
 
 function limparFormulario() {
   nomeInput.value = "";
